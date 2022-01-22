@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Logo from '../../assets/unfleux-logo.jpg';
+import { UserContext } from '../../Context/UserContext';
 
 function Navbar({ openModal }) {
+    const [userData, setUserData] = useContext(UserContext)
+
     return (
         <nav>
             <div className='nav-container'>
                 <img src={Logo} alt='Logo Infleux' />
-                <button onClick={openModal}>Entrar</button>
+                {userData.isLogged ? <button>Sair</button> : <button onClick={openModal}>Entrar</button>}
+                
             </div>
         </nav>
     )

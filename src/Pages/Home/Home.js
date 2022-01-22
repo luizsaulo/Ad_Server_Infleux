@@ -20,7 +20,7 @@ function Home() {
             <Navbar openModal={openModal} />
             <section className='input-section'>
                 <form>
-                    <h2>Pesquisar por campanha</h2>
+                    <h1>Pesquisar por campanha</h1>
                     <div className='form-inputs'>
                         <input type='text' placeholder='pesquisar por camapanha' />
                         <input type='number' min='0' placeholder='preço máximo' />
