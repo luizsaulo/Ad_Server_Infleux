@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../../Components/Navbar/Navbar';
 import Card from '../../Components/Card/Card';
 import Modal from '../../Components/Modal/Modal';
-import LoginModal from '../../Components/LoginModal/LoginModal';
-import RegisterModal from '../../Components/RegisterModal/RegisterModal';
+
 
 function Home() {
+    const [isModalOpen, setMdoalOpen] = useState(false)
+
+    function openModal() {
+        setMdoalOpen(true)
+    }
+
+    function closeModal() {
+        setMdoalOpen(false)
+    }
+
     return (
         <div>
-            <Navbar />
+            <Navbar openModal={openModal} />
             <section className='input-section'>
                 <form>
                     <h2>Pesquisar por campanha</h2>
@@ -24,7 +33,8 @@ function Home() {
                     <Card />                   
                 </section>
             </section>
-            <Modal />
+
+            {isModalOpen ? <Modal closeModal={closeModal} /> : null}           
         </div>
 
 

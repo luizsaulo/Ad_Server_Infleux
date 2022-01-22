@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import LoginModal from '../../Components/LoginModal/LoginModal';
 import RegisterModal from '../../Components/RegisterModal/RegisterModal';
 
-function Modal() {
+function Modal({ closeModal }) {
     const [isLogin, setIsLogin] = useState(true)
 
     function setLoginForm() {
@@ -14,7 +14,8 @@ function Modal() {
     }
 
     return (
-        <div className='backdrop'>
+        <div className='backdrop' >
+            <button className='close-modal-btn' onClick={closeModal}>Fechar</button>
            {isLogin ? <LoginModal setRegisterForm={setRegisterForm} /> : <RegisterModal setLoginForm={setLoginForm} />}            
         </div>
     )

@@ -1,12 +1,12 @@
 import React from 'react';
 import Logo from '../../assets/unfleux-logo.jpg';
 
-function Navbar() {
+function Navbar({ openModal }) {
     return (
         <nav>
             <div className='nav-container'>
                 <img src={Logo} alt='Logo Infleux' />
-                <button>Entrar</button>
+                <button onClick={openModal}>Entrar</button>
             </div>
         </nav>
     )

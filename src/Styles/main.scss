@@ -154,6 +154,14 @@ nav {
     align-items: center;
     justify-content: center;
 
+    .close-modal-btn {
+        position: fixed;
+        width: 80px;
+        margin-top: -250px;
+        display: flex;
+        margin-left: 900px;
+    }
+
     .modal {
         background: $tertiaryColor;
         max-width: 80%;
