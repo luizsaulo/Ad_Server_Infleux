@@ -1,8 +1,9 @@
 import React from 'react';
-import Logo from '../../assets/unfleux-logo.jpg';
 import Navbar from '../../Components/Navbar/Navbar';
 import Card from '../../Components/Card/Card';
-import { Link } from 'react-router-dom';
+import Modal from '../../Components/Modal/Modal';
+import LoginModal from '../../Components/LoginModal/LoginModal';
+import RegisterModal from '../../Components/RegisterModal/RegisterModal';
 
 function Home() {
     return (
@@ -23,17 +24,7 @@ function Home() {
                     <Card />                   
                 </section>
             </section>
-            <div className='backdrop'>
-                <div className='modal'>
-                    <h1>Entrar</h1>
-                    <form action=''>
-                        <input type='text' placeholder='email' />
-                        <input type='text' placeholder='senha' />
-                        <button>Entrar</button>
-                        <Link>Criar Conta</Link>
-                    </form>
-                </div>
-            </div>
+            <Modal />
         </div>
 
 

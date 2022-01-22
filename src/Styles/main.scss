@@ -156,7 +156,7 @@ nav {
 
     .modal {
         background: $tertiaryColor;
-        max-width: 60%;
+        max-width: 80%;
         width: 100%;
         min-height: 50vh;
         padding: 2*$standardSpace;
@@ -181,6 +181,7 @@ nav {
 
             button {
                 margin: $standardSpace 0;
+                width: 190px;
             }
 
             a {
