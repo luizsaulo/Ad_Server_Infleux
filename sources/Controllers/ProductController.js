@@ -6,6 +6,9 @@ module.exports = {
 
         const { name, price } = req.body
         const { user_id } = req.params
+        const { auth } = req.headers
+
+        if (user_id !== auth) return res.status(400).send({ message: 'Unauthorized' })
 
         try {
             const userInfo = await User.findById(user_id)
@@ -39,6 +42,9 @@ module.exports = {
 
     async delete (req, res) {
         const {  product_id, user_id } = req.params
+        const { auth } = req.headers
+
+        if (user_id !== auth) return res.status(400).send({ message: 'Unauthorized' })
 
         try {
             const deletedProduct = await Product.findByIdAndDelete(product_id)
@@ -50,7 +56,20 @@ module.exports = {
     },
 
     async indexByUser (req, res) {
+        const { user_id } = req.params
+        const { auth } = req.headers
 
+        if (user_id !== auth) return res.status(400).send({ message: 'Unauthorized' })
+
+        try {
+            const allProductsOfAUser = await Product.find({
+                user: user_id
+            })
+
+            return res.status(200).send(allProductsOfAUser)
+        } catch(err) {
+            return res.status(400).send(err)
+        }
     },
 
     async indexAll (req, res) {

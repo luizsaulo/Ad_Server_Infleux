@@ -12,6 +12,7 @@ routes.delete('/user/:user_id', UserController.delete)
 routes.post('/:user_id/product', ProductController.create)
 routes.delete('/:user_id/product/:product_id', ProductController.delete)
 routes.get('/product', ProductController.indexAll)
+routes.get('/product/:user_id', ProductController.indexByUser)
 
 routes.post('/session', SessionController.create)
 

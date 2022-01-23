@@ -43,6 +43,9 @@ module.exports = {
 
     async delete(req, res) {
         const { user_id } = req.params
+        const { auth } = req.headers
+
+        if (user_id !== auth) return res.status(400).send({ message: 'Unauthorized' })
 
         try {
             const deletedUser = await User.findByIdAndDelete({ user_id })
