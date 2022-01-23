@@ -20,6 +20,7 @@ module.exports = {
             type: 'Point',
             coordinates: [longitude, latitude]
         }
+        
 
         try{
             const userAlreadyExists = await User.findOne({ email })
