@@ -45,9 +45,19 @@ module.exports = {
         const { user_id } = req.params
 
         try {
-            const deletedUser = await User.findById({ user_id })
+            const deletedUser = await User.findByIdAndDelete({ user_id })
 
             return res.status(200).send({ status: 'deleted', user: deletedUser })
+        } catch(err) {
+            return res.status(400).send(err)
+        }
+    },
+
+    async index(req, res) {
+        try {
+            const allUsers = await User.find()
+
+            return res.status(200).send(allUsers)
         } catch(err) {
             return res.status(400).send(err)
         }
