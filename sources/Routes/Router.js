@@ -10,6 +10,9 @@ routes.post('/user', UserController.create)
 routes.get('/user', UserController.index)
 routes.delete('/user/:user_id', UserController.delete)
 routes.post('/:user_id/product', ProductController.create)
+routes.delete('/:user_id/product/:product_id', ProductController.delete)
+routes.get('/product', ProductController.indexAll)
+
 routes.post('/session', SessionController.create)
 
 module.exports = routes
