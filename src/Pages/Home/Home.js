@@ -87,15 +87,19 @@ function Home() {
                 </form>
             </section>
             <section className='products-section'>
-                <section className='products-container'> 
-                    {filteredProductsData.map(product => (
+                <section className='products-container'>
+                    {productsData.length > 0 ? 
+                    (filteredProductsData.map(product => (
                         <Card key={product._id}
                             name={product.name}
                             price={product.price}
                             userName={product.user.name}
                             userWhats={product.user.whatsapp}
                         />
-                    ))}  
+                    ))) :
+                        <h1>Carregando..</h1>                        
+                    }
+                     
                 </section>
             </section>
 

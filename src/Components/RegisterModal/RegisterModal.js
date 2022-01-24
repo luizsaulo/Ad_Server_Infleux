@@ -29,7 +29,11 @@ function RegisterModal({ setLoginForm }) {
                 latitude,
                 longitude             
             })
-            alert('Cadastro relizado com sucesso!')           
+            alert('Cadastro relizado com sucesso! Você já pode acessar sua conta') 
+            setName('')
+            setWhatsapp('')
+            setEmail('')
+            setPassword('')      
         } catch(err) {
             alert('Erro ao cadastrar usuário, tente novamente')
         }

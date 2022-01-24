@@ -10,6 +10,8 @@ module.exports = {
 
         if (user_id !== auth) return res.status(400).send({ message: 'Unauthorized' })
 
+        const randomNumberOrder = Math.floor((Math.random() * 1000) + 1)
+
         try {
             const userInfo = await User.findById(user_id)
 
@@ -29,7 +31,8 @@ module.exports = {
                 name,
                 price,
                 user: user_id,
-                location: setLocation
+                location: setLocation,
+                order: randomNumberOrder
             })
             await createdProduct.populate('user').execPopulate()
 
@@ -88,7 +91,7 @@ module.exports = {
                         $maxDistance: maxDistance
                     }
                 }
-            } ).populate('user')
+            } ).populate('user').limit(30).sort('order')
            
 
             return res.status(200).send(allProducts)
