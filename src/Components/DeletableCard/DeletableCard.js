@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-function DeletableCard({ name, price, userName, userWhats }) {
+function DeletableCard({ name, price, userName, userWhats, deleteProductHandler }) {
     
     return (
         <div className='card'>
-            <button>Excluir</button>          
+            <button onClick={ deleteProductHandler }>Excluir</button>          
             <h2>{ name }</h2>
             <h1>R$ { price }</h1>
             <div className='card-info'>

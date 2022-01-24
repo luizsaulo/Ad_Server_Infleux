@@ -34,13 +34,30 @@ function Dashboard() {
     }
 
     async function getUsersProducts() {
-        const userProductsData = await api.get(`/product/${userData._id}`, {
-            headers: {
-                auth: userData._id
+        try {
+            const userProductsData = await api.get(`/product/${userData._id}`, {
+                headers: {
+                    auth: userData._id
             }
-        })
-        const { data } = userProductsData
-        setProductsData(data)
+            })
+            const { data } = userProductsData
+            setProductsData(data)
+        } catch(err) {
+            alert('Erro ao carregar produtos')
+        }        
+    }
+
+    async function deleteProductHandler(product_id) {
+        try {
+            await api.delete(`/${userData.id}/product/${product_id}`, {
+                headers: {
+                    auth: userData._id
+                }
+            })
+            alert('Produto removido com sucesso!')
+        } catch(err) {
+            alert('Erro ao excluir produto')
+        }
     }
 
     return(
@@ -75,6 +92,7 @@ function Dashboard() {
                             price={product.price}
                             userName={product.user.name}
                             userWhats={product.user.whatsapp}
+                            deleteProductHandler={()=>{deleteProductHandler(product._id)}}
                         />
                     ))}                  
                                                      
