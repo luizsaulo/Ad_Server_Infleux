@@ -27,6 +27,7 @@ function LoginModal({ setRegisterForm }) {
                 isLogged: true, 
                 email: userInfo.email,
                 name: userInfo.name,
+                _id: userInfo._id
             }))
             
             history.push('/dashboard')
@@ -46,7 +47,7 @@ function LoginModal({ setRegisterForm }) {
                     onChange={e=>setEmail(e.target.value)}
                 />
                 <input 
-                    type='text' 
+                    type='password' 
                     placeholder='senha' 
                     value={password}
                     onChange={e=>setPassword(e.target.value)}

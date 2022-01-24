@@ -1,8 +1,48 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Navbar from '../../Components/Navbar/Navbar';
 import DeletableCard from '../../Components/DeletableCard/DeletableCard';
+import api from '../../Services/Api';
+import { UserContext } from '../../Context/UserContext'
 
 function Dashboard() {
+    const [prouctData, setUserData] = useContext(UserContext)
+    const [productName, setProductName] = useState('')
+    const [productPrice, setProductPrice] = useState(0)
+    const [productsData, setProductsData] = useState([])
+
+    useEffect(()=>{
+        getUsersProducts()
+    }, [])
+
+    async function newProductHandler(e) {
+        e.preventDefault()
+        try {
+            await api.post(`${userData._id}/product`, {
+                name: productName,
+                price: productPrice
+            }, {
+                headers: {
+                    auth: userData._id
+                }
+            })
+            alert('Item cadastrado com sucesso!')
+            setProductName('')
+            setProductPrice('')
+        } catch(err) {
+            alert('Falha ao adicionar item, tente novamente')
+        }
+    }
+
+    async function getUsersProducts() {
+        const userProductsData = await api.get(`/product/${userData._id}`, {
+            headers: {
+                auth: userData._id
+            }
+        })
+        const { data } = userProductsData
+        setProductsData(data)
+    }
+
     return(
         <div>
             <Navbar />
@@ -10,9 +50,20 @@ function Dashboard() {
                 <form>
                     <h1>Incluir campanha</h1>
                     <div className='campaign-inputs'>
-                        <input type='text' placeholder='tema da campanha' />
-                        <input type='number' min='0' placeholder='preço da campanha' />
-                        <button className='campaign-btn'>Adicionar Campanha</button>
+                        <input 
+                            type='text' 
+                            placeholder='tema da campanha' 
+                            value={productName}
+                            onChange={e=>setProductName(e.target.value)}
+                        />
+                        <input 
+                            type='number' 
+                            min='0' 
+                            placeholder='preço da campanha' 
+                            value={productPrice}
+                            onChange={e=>setProductPrice(e.target.value)}
+                        />
+                        <button className='campaign-btn' onClick={newProductHandler}>Adicionar Campanha</button>
                     </div>
                 </form>
             </section>

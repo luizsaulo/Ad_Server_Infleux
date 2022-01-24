@@ -13,6 +13,7 @@ function Navbar({ openModal }) {
             isLogged: false,
             email: '',
             name: '',
+            _id: '',
         }))
     }
 
@@ -20,7 +21,12 @@ function Navbar({ openModal }) {
         <nav>
             <div className='nav-container'>
                 <img src={Logo} alt='Logo Infleux' />
-                {userData.isLogged ? <button onClick={logoutHandler}>Sair</button> : <button onClick={openModal}>Entrar</button>}
+                {userData.isLogged ? 
+                    <>
+                    <p>Olá, {userData.name}</p>
+                    <button onClick={logoutHandler}>Sair</button>
+                    </> : 
+                    <button onClick={openModal}>Entrar</button>}
                 
             </div>
         </nav>
