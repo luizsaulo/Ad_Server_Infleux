@@ -11,8 +11,8 @@ function Dashboard() {
     const [productsData, setProductsData] = useState([])
 
     useEffect(()=>{
-        getUsersProducts()
-    }, [])
+       getUsersProducts()
+    }, [productsData])
 
     async function newProductHandler(e) {
         e.preventDefault()
@@ -68,9 +68,16 @@ function Dashboard() {
                 </form>
             </section>
             <section className='products-section'>
-                <section className='products-container'>                    
-                    <DeletableCard />
-                    <DeletableCard />               
+                <section className='products-container'>  
+                    {productsData.map(product => (
+                        <DeletableCard key={product._id}
+                            name={product.name}
+                            price={product.price}
+                            userName={product.user.name}
+                            userWhats={product.user.whatsapp}
+                        />
+                    ))}                  
+                                                     
                 </section>
             </section>
         </div>
