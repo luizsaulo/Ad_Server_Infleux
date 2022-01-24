@@ -11,7 +11,8 @@ function Home() {
     const [longitude, setLongitude] = useState(0)
     const [productsData, setProductsData] = useState([])
     const [productsByName, setProductsByName] = useState('')
-    const [productsByMaxPrice, setProductsByMaxPrice] = useState(500000000)
+    const [productsByMaxPrice, setProductsByMaxPrice] = useState(100000000)
+    const [filteredProductsData, setFilteredProductsData] = useState([])
 
     useEffect(() => {
         getUserLocation()
@@ -44,9 +45,15 @@ function Home() {
 
     useEffect(() => {
         getFilteredProducts()
-    }, [productsByName, productsByMaxPrice])
+    }, [productsData, productsByName, productsByMaxPrice])
 
-    
+    function getFilteredProducts() {
+        const filteredProducts = productsData.filter(product => 
+             (!productsByName || product.name.toLowerCase().includes(productsByName.toLowerCase()))  
+             (!productsByMaxPrice || product.price <= productsByMaxPrice)
+        )
+        setFilteredProductsData(filteredProducts)
+    }
 
     function openModal() {
         setMdoalOpen(true)
@@ -81,15 +88,14 @@ function Home() {
             </section>
             <section className='products-section'>
                 <section className='products-container'> 
-                    {productsData.map(product => (
+                    {filteredProductsData.map(product => (
                         <Card key={product._id}
                             name={product.name}
                             price={product.price}
                             userName={product.user.name}
                             userWhats={product.user.whatsapp}
                         />
-                    ))}                   
-                                       
+                    ))}  
                 </section>
             </section>
 

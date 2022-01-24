@@ -76,7 +76,8 @@ function Dashboard() {
                         <input 
                             type='number' 
                             min='0' 
-                            placeholder='preço da campanha' 
+                            placeholder='preço da campanha (R$)'
+                            max={1000000} 
                             value={productPrice}
                             onChange={e=>setProductPrice(e.target.value)}
                         />
